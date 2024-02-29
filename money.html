@@ -84,17 +84,11 @@
   <div id="score">
     <p>Score is zero.</p>
   </div>
-  <div id="click">
-    <p>Click for help.</p>
-  </div>
-
-  <div id="help" class="alert alert-secondary" role="alert" style="display: none;">
-    Help report
-  </div>
+  <button onclick="help()">Click for help.</button>
+  <p id="help">Show Help report</p>
+  
 
   <button onclick="newgame()">New Game</button>
-
-  <button type="button" class="btn btn-primary" onclick="showHelpReport()">Show Help Report</button>
   </div>
   <script>
     function showHelpReport() {
