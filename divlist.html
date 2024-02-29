@@ -26,7 +26,7 @@
 
 <body>
 	<h1>Yashaswini builds list with divs</h1>
-    <label for="text">Enter Text: </label>
+    <label for="text">Enter Text:</label>
 	<input type="text" style="margin-bottom: 10px;">
 
 	<div class="flex-container" id="target">
@@ -39,62 +39,48 @@
 	<button onclick="makeNewDiv()">Add end</button>
 	<button onclick="addFront()">Add Front</button>
 	<button onclick="remove()">Remove</button>
-	<button onclick="swap()">Swap</button>
+	
 
 
 
 
 </body>
 <script>
-	function makeNewDiv() {
-		
-		let element = document.createElement("div")
-		element.innerHTML = document.querySelector("input").value
-		element.style.color = "orange"
+    let colorCounter = 0;
+    let divCount = 3;
 
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
+    function makeNewDiv() {
+        let element = createDiv();
+        let container = document.getElementById('target');
+        container.appendChild(element);
+    }
 
-	}
+    function remove() {
+        let container = document.getElementsByClassName("divlist");
+        if (container.length > 0) {
+            var middleIndex = Math.floor(container.length / 2);
+			container[middleIndex].remove()
+        }
+    }
+    
 
-	function remove() {
-		let divListItems = document.getElementsByClassName("divlist");
-		var len = divListItems.length;
-		if (len > 0) {
-			var middleIndex = Math.floor(len / 2);
-			divListItems[middleIndex].remove()
-		}
-	}
+    function addFront() {
+        let element = createDiv();
+        let container = document.getElementById('target');
+        container.insertBefore(element, container.firstChild);
+    }
 
-	function addFront() {
-		let element = document.createElement("div");
-		element.innerHTML = document.querySelector("input").value
-		element.style.color = "blue"
-		let container = document.getElementById('target')
-		container.insertBefore(element, container.firstChild);
-	}
+    function createDiv() {
+        let element = document.createElement("div");
+        element.innerHTML = document.querySelector("input").value;
+        element.style.color = getColor();
+        element.className = "divlist";
+        element.id = "div" + divCount++;
+        return element;
+    }
 
-	function swap() {
-		var container = document.getElementById('target');
-		var len = container.children.length;
-
-		if (len > 1) {
-			var index1 = Math.floor(Math.random() * len);
-			var index2;
-
-			do {
-				index2 = Math.floor(Math.random() * len);
-			} while (index1 === index2);
-
-			var element1 = container.children[index1];
-			var element2 = container.children[index2];
-
-			container.insertBefore(element2, container.children[index1]);
-			container.insertBefore(element1, container.children[index2]);
-		}
-	}
-
-
+    function getColor() {
+        return (colorCounter++ % 2 === 0) ? "orange" : "blue";
+    }
 </script>
 </html>	
