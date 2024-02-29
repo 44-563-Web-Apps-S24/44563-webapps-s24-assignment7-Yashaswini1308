@@ -92,7 +92,7 @@
     Help report
   </div>
 
-  <button onclick="newgame()">New Game</button> 
+  <button onclick="newgame()">New Game</button>
 
   <button type="button" class="btn btn-primary" onclick="showHelpReport()">Show Help Report</button>
   </div>
@@ -229,21 +229,25 @@
         help_text.innerHTML = "All clear";
       }
     }
-
     function newgame() {
-      gameOver = false;
-      score = 0;
-      locations = 0;
+      let gameOver = false;
+      let score = 0;
+      let locations = 0;
+      let monsterLocation;
+      let fancyCoinLocations = [];
+
       let im = document.getElementsByTagName("img");
-      for (i = 0; i < im.length; i++) {
+      for (let i = 0; i < im.length; i++) {
         im[i].src = "build.jpg";
       }
+
       monsterLocation = Math.floor(Math.random() * 35);
-      for (i = 0; i < fancyCoinLocations.length; i++) {
+      for (let i = 0; i < fancyCoinLocations.length; i++) {
         fancyCoinLocations[i] = Math.floor(Math.random() * 35);
       }
-      document.getElementById("score").innerText = "Score is " + score + ".";
-      document.getElementById("locations").innerText = "Number of locations checked is " + locations + ".";
+
+      document.getElementById("score").innerText = "Score: " + score;
+      document.getElementById("locations").innerText = "Number of locations checked: " + locations;
     }
   </script>
 </body>
